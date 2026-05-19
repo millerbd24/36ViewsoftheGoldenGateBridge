@@ -12,7 +12,6 @@
       --ivory: #f5f0e8;
       --charcoal: #1a1a1a;
       --warm-gray: #8a8078;
-      --rust: #b84a2e;
       --gold: #c9a84c;
       --black: #0f0f0f;
     }
@@ -25,12 +24,9 @@
       font-family: 'Montserrat', sans-serif;
     }
 
-    /* HEADER */
     header {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       z-index: 100;
       padding: 1.2rem 3rem;
       display: flex;
@@ -44,17 +40,13 @@
       font-family: 'Cormorant Garamond', serif;
       font-weight: 300;
       font-size: 1rem;
-      letter-spacing: 0.05em;
       color: var(--ivory);
       text-decoration: none;
     }
 
     .site-title em { font-style: italic; color: var(--gold); }
 
-    nav {
-      display: flex;
-      gap: 2.5rem;
-    }
+    nav { display: flex; gap: 2.5rem; }
 
     nav a {
       font-family: 'Montserrat', sans-serif;
@@ -69,152 +61,91 @@
 
     nav a:hover, nav a.active { color: var(--gold); }
 
-    /* PAGE TITLE */
-    .page-header {
-      padding: 9rem 3rem 3rem;
-      text-align: center;
-    }
+    .gallery { padding-top: 60px; }
 
-    .page-header .eyebrow {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 200;
-      font-size: 0.6rem;
-      letter-spacing: 0.5em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1rem;
-    }
-
-    .page-header h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      letter-spacing: 0.03em;
-      color: var(--ivory);
-    }
-
-    .page-header h1 em { font-style: italic; color: var(--gold); }
-
-    .page-header .rule {
-      width: 40px;
-      height: 1px;
-      background: var(--gold);
-      margin: 1.5rem auto 0;
-    }
-
-    /* GALLERY GRID */
-    .gallery {
-      padding: 3rem 1.5rem 6rem;
-      max-width: 1800px;
-      margin: 0 auto;
-      columns: 1;
-      column-gap: 1.5rem;
-    }
-
-    @media (min-width: 600px)  { .gallery { columns: 2; } }
-    @media (min-width: 900px)  { .gallery { columns: 3; } }
-    @media (min-width: 1300px) { .gallery { columns: 4; } }
-
-    .gallery-item {
-      break-inside: avoid;
-      margin-bottom: 1.5rem;
+    .photo-block {
       position: relative;
-      cursor: pointer;
-      overflow: hidden;
-      display: block;
-    }
-
-    .gallery-item img {
       width: 100%;
+      cursor: pointer;
       display: block;
-      transition: transform 0.6s ease;
-      filter: brightness(0.92);
+      line-height: 0;
+      border-bottom: 4px solid var(--black);
     }
 
-    .gallery-item:hover img {
-      transform: scale(1.03);
-      filter: brightness(1);
+    .photo-block img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: filter 0.4s ease;
     }
 
-    .gallery-item .num {
+    .photo-block:hover img { filter: brightness(1.06); }
+
+    .photo-num {
       position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 2rem 1rem 0.8rem;
-      background: linear-gradient(transparent, rgba(0,0,0,0.7));
+      bottom: 1.2rem;
+      left: 1.5rem;
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
-      font-size: 0.85rem;
+      font-size: 1rem;
       color: rgba(245,240,232,0.6);
-      letter-spacing: 0.05em;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.9);
       opacity: 0;
-      transform: translateY(6px);
+      transform: translateY(4px);
       transition: opacity 0.3s, transform 0.3s;
+      pointer-events: none;
     }
 
-    .gallery-item:hover .num {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .photo-block:hover .photo-num { opacity: 1; transform: translateY(0); }
 
-    /* LIGHTBOX */
     #lightbox {
       display: none;
       position: fixed;
       inset: 0;
       z-index: 1000;
-      background: rgba(10,10,10,0.97);
+      background: rgba(8,8,8,0.98);
       align-items: center;
       justify-content: center;
       flex-direction: column;
     }
 
-    #lightbox.open {
-      display: flex;
-      animation: lbFade 0.3s ease;
-    }
+    #lightbox.open { display: flex; animation: lbFade 0.25s ease; }
 
-    @keyframes lbFade {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
+    @keyframes lbFade { from { opacity: 0; } to { opacity: 1; } }
 
     #lightbox-img {
-      max-width: 92vw;
-      max-height: 85vh;
+      max-width: 96vw;
+      max-height: 90vh;
       object-fit: contain;
       display: block;
-      box-shadow: 0 30px 80px rgba(0,0,0,0.8);
-      animation: lbSlide 0.35s ease;
+      animation: lbScale 0.3s ease;
     }
 
-    @keyframes lbSlide {
-      from { opacity: 0; transform: scale(0.96); }
+    @keyframes lbScale {
+      from { opacity: 0; transform: scale(0.97); }
       to   { opacity: 1; transform: scale(1); }
     }
 
     .lb-caption {
-      margin-top: 1.2rem;
+      margin-top: 1rem;
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
       font-size: 0.9rem;
-      color: rgba(245,240,232,0.45);
+      color: rgba(245,240,232,0.35);
       letter-spacing: 0.08em;
     }
 
     .lb-close {
       position: fixed;
-      top: 1.5rem;
-      right: 2rem;
-      font-size: 1.5rem;
-      color: rgba(245,240,232,0.5);
+      top: 1.2rem; right: 1.8rem;
+      font-size: 1.6rem;
+      color: rgba(245,240,232,0.4);
       cursor: pointer;
-      transition: color 0.2s;
       background: none;
       border: none;
       line-height: 1;
       padding: 0.5rem;
+      transition: color 0.2s;
     }
 
     .lb-close:hover { color: var(--gold); }
@@ -225,31 +156,30 @@
       transform: translateY(-50%);
       background: none;
       border: none;
-      color: rgba(245,240,232,0.4);
-      font-size: 2rem;
+      color: rgba(245,240,232,0.35);
+      font-size: 2.5rem;
       cursor: pointer;
-      padding: 1rem;
+      padding: 1.5rem;
       transition: color 0.2s;
       line-height: 1;
     }
 
     .lb-arrow:hover { color: var(--gold); }
-    .lb-arrow.prev { left: 1rem; }
-    .lb-arrow.next { right: 1rem; }
+    .lb-arrow.prev { left: 0.5rem; }
+    .lb-arrow.next { right: 0.5rem; }
 
     .lb-counter {
       position: fixed;
-      bottom: 1.5rem;
+      bottom: 1.2rem;
       left: 50%;
       transform: translateX(-50%);
       font-family: 'Montserrat', sans-serif;
       font-weight: 200;
       font-size: 0.6rem;
-      letter-spacing: 0.4em;
-      color: rgba(245,240,232,0.3);
+      letter-spacing: 0.45em;
+      color: rgba(245,240,232,0.25);
     }
 
-    /* FOOTER */
     footer {
       background: #0a0a0a;
       padding: 1.5rem;
@@ -278,21 +208,14 @@
     </nav>
   </header>
 
-  <div class="page-header">
-    <p class="eyebrow">Photographs by Brad Miller</p>
-    <h1>36 Views of the <em>Golden Gate Bridge</em></h1>
-    <div class="rule"></div>
-  </div>
+  <div class="gallery" id="gallery"></div>
 
-  <main class="gallery" id="gallery"></main>
-
-  <!-- LIGHTBOX -->
   <div id="lightbox">
-    <button class="lb-close" id="lb-close" aria-label="Close">&#x2715;</button>
-    <button class="lb-arrow prev" id="lb-prev" aria-label="Previous">&#8592;</button>
+    <button class="lb-close" id="lb-close">&#x2715;</button>
+    <button class="lb-arrow prev" id="lb-prev">&#8592;</button>
     <img id="lightbox-img" src="" alt="">
     <p class="lb-caption" id="lb-caption"></p>
-    <button class="lb-arrow next" id="lb-next" aria-label="Next">&#8594;</button>
+    <button class="lb-arrow next" id="lb-next">&#8594;</button>
     <p class="lb-counter" id="lb-counter"></p>
   </div>
 
@@ -309,19 +232,17 @@
     const gallery = document.getElementById('gallery');
     let currentIndex = 0;
 
-    // Build gallery
     for (let i = 1; i <= total; i++) {
-      const item = document.createElement('div');
-      item.className = 'gallery-item';
-      item.innerHTML = `
-        <img src="photos/${i}.jpg" alt="View ${i}" loading="lazy">
-        <span class="num">View ${i} of 36</span>
+      const block = document.createElement('div');
+      block.className = 'photo-block';
+      block.innerHTML = `
+        <img src="photos/${i}.jpg" alt="View ${i} of 36" loading="lazy">
+        <span class="photo-num">View ${i} of 36</span>
       `;
-      item.addEventListener('click', () => openLightbox(i - 1));
-      gallery.appendChild(item);
+      block.addEventListener('click', () => openLightbox(i - 1));
+      gallery.appendChild(block);
     }
 
-    // Lightbox
     const lb = document.getElementById('lightbox');
     const lbImg = document.getElementById('lightbox-img');
     const lbCaption = document.getElementById('lb-caption');
@@ -341,7 +262,7 @@
 
     function updateLightbox() {
       lbImg.src = `photos/${currentIndex + 1}.jpg`;
-      lbImg.alt = `View ${currentIndex + 1}`;
+      lbImg.alt = `View ${currentIndex + 1} of 36`;
       lbCaption.textContent = `View ${currentIndex + 1} of 36`;
       lbCounter.textContent = `${currentIndex + 1} / ${total}`;
     }
@@ -366,9 +287,7 @@
     document.getElementById('lb-prev').addEventListener('click', prevImage);
     document.getElementById('lb-next').addEventListener('click', nextImage);
 
-    lb.addEventListener('click', (e) => {
-      if (e.target === lb) closeLightbox();
-    });
+    lb.addEventListener('click', (e) => { if (e.target === lb) closeLightbox(); });
 
     document.addEventListener('keydown', (e) => {
       if (!lb.classList.contains('open')) return;
